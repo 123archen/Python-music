@@ -1,0 +1,57 @@
+import math as m
+file = open("hotcrossbuns.txt","w") #creates/opens the song file
+notes = { #Library matching notes with frequencies
+    "c": 16.35, 
+    "c#": 17.32,
+    "d": 18.35,
+    "d#": 19.45,
+    "e": 20.60,
+    "f": 21.83,
+    "f#": 23.12,
+    "g": 24.5,
+    "g#": 25.96,
+    "a": 27.5,
+    "a#": 29.14,
+    "b": 30.87,
+}
+
+def play_note(note,octave,time):
+    if note == "s": # if note is s, then silence will be inserted for the duration of the selected time
+        frequency = 0
+    else:
+        frequency = notes[note]*(2**(octave-1)) # the frequency depends on the note and octave
+    for sample in range(1,round(44100*time)): # 44100 is the sample rate most softwares use
+        x = (sample/122.5)*frequency #122.5 is the amount of times a frequency of one hertz completes a cycle in 44100 samples
+        value = m.sin(m.radians(x)) # this line creates a sine wave
+        file.write(str(value)) #must be converted into a string before written.
+        file.write("\n")
+
+#hot cross buns
+
+play_note("e",4,0.4)
+play_note("s",4,0.1)
+play_note("d",4,0.4)
+play_note("s",4,0.1)
+play_note("c",4,0.9)
+play_note("s",4,0.1)
+play_note("e",4,0.4)
+play_note("s",4,0.1)
+play_note("d",4,0.4)
+play_note("s",4,0.1)
+play_note("c",4,0.9)
+play_note("s",4,0.1)
+play_note("c",4,0.4)
+play_note("s",4,0.1)
+play_note("c",4,0.4)
+play_note("s",4,0.1)
+play_note("d",4,0.4)
+play_note("s",4,0.1)
+play_note("d",4,0.4)
+play_note("s",4,0.1)
+play_note("e",4,0.4)
+play_note("s",4,0.1)
+play_note("d",4,0.4)
+play_note("s",4,0.1)
+play_note("c",4,0.9)
+play_note("s",4,0.1)
+
